@@ -1,1 +1,1290 @@
-const _0x2b8729=_0x48b4;(function(_0x217fda,_0x13125a){const _0x289d77=_0x48b4,_0x49a3f4=_0x217fda();while(!![]){try{const _0x25e0fb=-parseInt(_0x289d77(0x118))/0x1+-parseInt(_0x289d77(0x131))/0x2*(-parseInt(_0x289d77(0x190))/0x3)+parseInt(_0x289d77(0x12a))/0x4+-parseInt(_0x289d77(0x138))/0x5*(-parseInt(_0x289d77(0x142))/0x6)+-parseInt(_0x289d77(0x14c))/0x7*(parseInt(_0x289d77(0x187))/0x8)+parseInt(_0x289d77(0xed))/0x9*(parseInt(_0x289d77(0xf0))/0xa)+-parseInt(_0x289d77(0x106))/0xb*(-parseInt(_0x289d77(0x115))/0xc);if(_0x25e0fb===_0x13125a)break;else _0x49a3f4['push'](_0x49a3f4['shift']());}catch(_0x4f9cba){_0x49a3f4['push'](_0x49a3f4['shift']());}}}(_0x261b,0xc3a19));const modeButtons=document['querySelectorAll']('.mode-btn'),currencySelect=document[_0x2b8729(0x193)](_0x2b8729(0xf2)),customCurrencySelect=document[_0x2b8729(0x193)]('customCurrencySelect'),currencyTrigger=document['getElementById'](_0x2b8729(0x124)),currencyDropdown=document[_0x2b8729(0x193)]('currencyDropdown'),currencyText=document[_0x2b8729(0x193)](_0x2b8729(0x136)),flag1=document[_0x2b8729(0x193)]('flag1'),flag2=document[_0x2b8729(0x193)](_0x2b8729(0x170)),timeframeSelect=document['getElementById'](_0x2b8729(0x128)),customTimeframeSelect=document[_0x2b8729(0x193)](_0x2b8729(0x14a)),timeframeTrigger=document['getElementById']('timeframeTrigger'),timeframeDropdown=document[_0x2b8729(0x193)](_0x2b8729(0x135)),timeframeText=document['getElementById']('timeframeText'),signalPlaceholder=document[_0x2b8729(0x193)](_0x2b8729(0x177)),imageInput=document[_0x2b8729(0x193)](_0x2b8729(0x123)),previewImage=document['getElementById']('previewImage'),signalInfo=document['getElementById']('signalInfo'),calculatingIndicators=document['getElementById'](_0x2b8729(0xe0)),getSignalBtn=document['getElementById']('getSignalBtn'),customLanguageSelect=document[_0x2b8729(0x193)]('customLanguageSelect'),languageTrigger=document[_0x2b8729(0x193)]('languageTrigger'),languageModal=document[_0x2b8729(0x193)](_0x2b8729(0x12f)),languageModalClose=document[_0x2b8729(0x193)](_0x2b8729(0x17f)),languageModalList=document['getElementById'](_0x2b8729(0x144)),languageFlag=document['getElementById']('languageFlag'),newPhotoBtn=document[_0x2b8729(0x193)](_0x2b8729(0xfb));let selectedImage=null,currentMode=_0x2b8729(0xee),currentLanguage='en';function initTelegramWebApp(){const _0x4105d3=_0x2b8729;if(window[_0x4105d3(0xef)]&&window['Telegram']['WebApp']){const _0x1d49a9=window[_0x4105d3(0xef)][_0x4105d3(0x195)];_0x1d49a9[_0x4105d3(0x129)](),_0x1d49a9[_0x4105d3(0x10f)]();const _0x1fa0ae=document[_0x4105d3(0x12b)]('.header');if(_0x1fa0ae&&_0x1d49a9[_0x4105d3(0x153)]){const _0x48c7e9=_0x1d49a9['safeAreaInsets'][_0x4105d3(0x192)]||0x0,_0x15c94d=0x8;_0x1fa0ae['style'][_0x4105d3(0x159)]=_0x48c7e9+_0x15c94d+'px';}}}document[_0x2b8729(0x145)]===_0x2b8729(0x134)?document['addEventListener']('DOMContentLoaded',initTelegramWebApp):(initTelegramWebApp(),setTimeout(initTelegramWebApp,0x64));const translations={'en':{'selectLanguage':'Select\x20Language','placeholderText':_0x2b8729(0x1a2),'getSignal':_0x2b8729(0x165),'analyzing':'ANALYZING...','loadMorePhotos':'Load\x20more\x20photos','calculatingIndicators':'Calculating\x20indicators','analyzingIndicators':_0x2b8729(0x18f),'calculating':_0x2b8729(0x10b),'ready':_0x2b8729(0x101),'sign':_0x2b8729(0x112),'currencyPair':_0x2b8729(0xf9),'timeframe':_0x2b8729(0x11e),'accuracy':_0x2b8729(0x17b),'direction':_0x2b8729(0x120),'signalFound':'Signal\x20found','buy':_0x2b8729(0x116),'sell':_0x2b8729(0x150)},'ru':{'selectLanguage':'Выбрать\x20язык','placeholderText':'Нажмите,\x20чтобы\x20сделать\x20фото\x20или\x20выбрать\x20изображение','getSignal':_0x2b8729(0xec),'analyzing':_0x2b8729(0x126),'loadMorePhotos':_0x2b8729(0xf6),'calculatingIndicators':_0x2b8729(0x186),'analyzingIndicators':_0x2b8729(0xf4),'calculating':'Вычисляется...','ready':_0x2b8729(0x151),'sign':'СИГНАЛ','currencyPair':'Валютная\x20пара','timeframe':_0x2b8729(0xe5),'accuracy':'Точность','direction':_0x2b8729(0x143),'signalFound':'Сигнал\x20найден','buy':_0x2b8729(0x168),'sell':_0x2b8729(0x137)}},timeframeOptions={'forex':[{'value':'1m','label':'1M'},{'value':'3m','label':'3M'},{'value':'5m','label':'5M'},{'value':'15m','label':'15M'},{'value':'30m','label':_0x2b8729(0x167)}],'otc':[{'value':'5s','label':'5S'},{'value':'15s','label':_0x2b8729(0x189)},{'value':_0x2b8729(0x125),'label':'30S'},{'value':'1m','label':'1M'},{'value':'5m','label':'5M'},{'value':_0x2b8729(0x173),'label':'15M'}]};modeButtons[_0x2b8729(0xff)](_0x8a4452=>{const _0x26138b=_0x2b8729,_0x3c3821=_0x5510cc=>{const _0x1f1187=_0x48b4;_0x5510cc[_0x1f1187(0x175)](),_0x5510cc[_0x1f1187(0x19e)](),modeButtons['forEach'](_0x5069=>{const _0x3f98eb=_0x1f1187;_0x5069[_0x3f98eb(0x119)]['remove'](_0x3f98eb(0x1a0)),_0x5069[_0x3f98eb(0x15a)][_0x3f98eb(0xf5)]=_0x3f98eb(0x194);}),_0x8a4452['classList'][_0x1f1187(0xf3)](_0x1f1187(0x1a0)),_0x8a4452[_0x1f1187(0x15a)]['transform']='scale(1.05)',setTimeout(()=>{const _0xda1367=_0x1f1187;_0x8a4452['style'][_0xda1367(0xf5)]=_0xda1367(0x105);},0xc8),currentMode=_0x8a4452[_0x1f1187(0x16a)][_0x1f1187(0x183)],updateCurrencyOptions(),updateCustomCurrencyOptions(),updateTimeframeOptions(),setTimeout(()=>{const _0x384302=_0x1f1187;_0x8a4452[_0x384302(0x141)](),document[_0x384302(0xfe)]&&document['activeElement'][_0x384302(0x141)](),document[_0x384302(0xdf)]&&(document[_0x384302(0xdf)][_0x384302(0x127)](),document['body'][_0x384302(0x141)]());},0x0);};_0x8a4452[_0x26138b(0x169)](_0x26138b(0x113),_0x1a0080=>_0x1a0080[_0x26138b(0x175)]()),_0x8a4452[_0x26138b(0x169)]('touchstart',_0x5105b3=>_0x5105b3[_0x26138b(0x175)]()),_0x8a4452[_0x26138b(0x169)](_0x26138b(0x109),_0x3c3821),_0x8a4452[_0x26138b(0x169)](_0x26138b(0x164),_0x32f26c=>{const _0x290c95=_0x26138b;_0x32f26c[_0x290c95(0x175)](),_0x3c3821(_0x32f26c),_0x8a4452[_0x290c95(0x141)]();}),_0x8a4452[_0x26138b(0x169)](_0x26138b(0x17a),_0x3aedab=>{const _0x3f13d6=_0x26138b;_0x3aedab[_0x3f13d6(0x175)](),_0x8a4452[_0x3f13d6(0x141)]();}),_0x8a4452[_0x26138b(0x169)](_0x26138b(0x13e),()=>_0x8a4452[_0x26138b(0x141)]()),_0x8a4452[_0x26138b(0x169)]('touchcancel',()=>_0x8a4452['blur']());});function updateCurrencyOptions(){const _0x3525f=_0x2b8729,_0x37c546=currencySelect['querySelectorAll']('option'),_0x446e4a=currencySelect['value'];_0x37c546[_0x3525f(0xff)](_0x580c63=>{const _0x5b9459=_0x3525f,_0x5cf9e4=_0x580c63[_0x5b9459(0x182)];currentMode===_0x5b9459(0xee)?_0x580c63[_0x5b9459(0x17e)]=_0x5cf9e4+_0x5b9459(0x161):_0x580c63[_0x5b9459(0x17e)]=_0x5cf9e4;}),currencySelect[_0x3525f(0x182)]=_0x446e4a;}function updateTimeframeOptions(){const _0x31b803=_0x2b8729,_0x1d6ae2=timeframeOptions[currentMode],_0x3932be=timeframeSelect[_0x31b803(0x182)];timeframeSelect[_0x31b803(0xea)]='',_0x1d6ae2[_0x31b803(0xff)](_0x2d47cf=>{const _0x6e7338=_0x31b803,_0x29105a=document['createElement']('option');_0x29105a['value']=_0x2d47cf[_0x6e7338(0x182)],_0x29105a['textContent']=_0x2d47cf[_0x6e7338(0xe3)],timeframeSelect[_0x6e7338(0x156)](_0x29105a);});let _0x5b817b=_0x1d6ae2[0x0][_0x31b803(0x182)];_0x1d6ae2['find'](_0x58f091=>_0x58f091[_0x31b803(0x182)]===_0x3932be)&&(_0x5b817b=_0x3932be);timeframeSelect[_0x31b803(0x182)]=_0x5b817b,timeframeDropdown[_0x31b803(0xea)]='',_0x1d6ae2['forEach'](_0x181624=>{const _0x243ee9=_0x31b803,_0xdb8c7f=document[_0x243ee9(0x12c)](_0x243ee9(0xfd));_0xdb8c7f['className']=_0x243ee9(0x197),_0xdb8c7f[_0x243ee9(0x16a)][_0x243ee9(0x182)]=_0x181624[_0x243ee9(0x182)],_0xdb8c7f['innerHTML']='<span\x20class=\x22timeframe-text\x22>'+_0x181624[_0x243ee9(0xe3)]+_0x243ee9(0x10c),_0x181624[_0x243ee9(0x182)]===_0x5b817b&&_0xdb8c7f[_0x243ee9(0x119)]['add'](_0x243ee9(0xe9)),_0xdb8c7f['addEventListener'](_0x243ee9(0x109),_0x45a069=>{const _0x1b6954=_0x243ee9;_0x45a069[_0x1b6954(0x19e)]();const _0x4834d4=_0xdb8c7f[_0x1b6954(0x16a)][_0x1b6954(0x182)];timeframeSelect[_0x1b6954(0x182)]=_0x4834d4,timeframeText[_0x1b6954(0x17e)]=_0x181624[_0x1b6954(0xe3)],timeframeDropdown[_0x1b6954(0x171)](_0x1b6954(0x181))['forEach'](_0x3857d0=>{const _0x9e0cd3=_0x1b6954;_0x3857d0[_0x9e0cd3(0x119)][_0x9e0cd3(0xe4)](_0x9e0cd3(0xe9));}),_0xdb8c7f[_0x1b6954(0x119)][_0x1b6954(0xf3)]('selected'),timeframeTrigger['classList']['remove'](_0x1b6954(0x1a0)),timeframeDropdown[_0x1b6954(0x119)][_0x1b6954(0xe4)](_0x1b6954(0x157)),timeframeSelect['dispatchEvent'](new Event('change')),setTimeout(()=>{removeAllFocus();},0x64);}),timeframeDropdown[_0x243ee9(0x156)](_0xdb8c7f);});const _0x405f81=_0x1d6ae2[_0x31b803(0x179)](_0x2d5eb8=>_0x2d5eb8[_0x31b803(0x182)]===_0x5b817b);_0x405f81&&(timeframeText[_0x31b803(0x17e)]=_0x405f81[_0x31b803(0xe3)]);}currencyTrigger[_0x2b8729(0x169)](_0x2b8729(0x109),_0xcedccd=>{const _0x3dfce0=_0x2b8729;_0xcedccd[_0x3dfce0(0x19e)](),timeframeTrigger['classList'][_0x3dfce0(0xe4)](_0x3dfce0(0x1a0)),timeframeDropdown[_0x3dfce0(0x119)]['remove']('open'),languageModal&&languageModal[_0x3dfce0(0x119)][_0x3dfce0(0xe4)]('active'),currencyTrigger[_0x3dfce0(0x119)]['toggle'](_0x3dfce0(0x1a0)),currencyDropdown[_0x3dfce0(0x119)][_0x3dfce0(0x14e)](_0x3dfce0(0x157));}),timeframeTrigger[_0x2b8729(0x169)](_0x2b8729(0x109),_0x1fe225=>{const _0x34a6af=_0x2b8729;_0x1fe225[_0x34a6af(0x19e)](),currencyTrigger[_0x34a6af(0x119)][_0x34a6af(0xe4)](_0x34a6af(0x1a0)),currencyDropdown['classList'][_0x34a6af(0xe4)](_0x34a6af(0x157)),languageModal&&languageModal[_0x34a6af(0x119)][_0x34a6af(0xe4)](_0x34a6af(0x1a0)),timeframeTrigger['classList'][_0x34a6af(0x14e)](_0x34a6af(0x1a0)),timeframeDropdown[_0x34a6af(0x119)][_0x34a6af(0x14e)](_0x34a6af(0x157));}),languageTrigger[_0x2b8729(0x169)](_0x2b8729(0x109),_0xc44aa5=>{const _0x4ee9a2=_0x2b8729;_0xc44aa5[_0x4ee9a2(0x19e)](),currencyTrigger[_0x4ee9a2(0x119)]['remove'](_0x4ee9a2(0x1a0)),currencyDropdown[_0x4ee9a2(0x119)]['remove']('open'),timeframeTrigger[_0x4ee9a2(0x119)][_0x4ee9a2(0xe4)]('active'),timeframeDropdown[_0x4ee9a2(0x119)]['remove'](_0x4ee9a2(0x157)),languageModal['classList'][_0x4ee9a2(0xf3)](_0x4ee9a2(0x1a0)),updateLanguageModalTitle();}),languageModalClose['addEventListener']('click',_0x150ae4=>{const _0x52df55=_0x2b8729;_0x150ae4[_0x52df55(0x19e)](),languageModal['classList'][_0x52df55(0xe4)](_0x52df55(0x1a0)),setTimeout(()=>{removeAllFocus();},0x64);}),languageModal[_0x2b8729(0x169)]('click',_0x4bf68e=>{const _0x1d9daa=_0x2b8729;_0x4bf68e['target']===languageModal&&(languageModal[_0x1d9daa(0x119)][_0x1d9daa(0xe4)](_0x1d9daa(0x1a0)),setTimeout(()=>{removeAllFocus();},0x64));}),languageModalList[_0x2b8729(0x171)](_0x2b8729(0x17d))[_0x2b8729(0xff)](_0x2de90a=>{_0x2de90a['addEventListener']('click',_0x39648c=>{const _0x21dd02=_0x48b4;_0x39648c[_0x21dd02(0x19e)]();const _0x409e27=_0x2de90a[_0x21dd02(0x16a)]['lang'],_0x338091=_0x2de90a['dataset']['flag'];_0x409e27&&_0x409e27!==currentLanguage?(currentLanguage=_0x409e27,localStorage[_0x21dd02(0x18e)](_0x21dd02(0x18d),currentLanguage),languageFlag[_0x21dd02(0x178)]=_0x21dd02(0x15c)+_0x338091+_0x21dd02(0x104),languageModalList['querySelectorAll'](_0x21dd02(0x17d))[_0x21dd02(0xff)](_0x4f23f8=>{const _0x4ec96d=_0x21dd02;_0x4f23f8['classList'][_0x4ec96d(0xe4)]('selected');}),_0x2de90a['classList']['add'](_0x21dd02(0xe9)),languageModal[_0x21dd02(0x119)][_0x21dd02(0xe4)]('active'),updateLanguage()):languageModal[_0x21dd02(0x119)][_0x21dd02(0xe4)](_0x21dd02(0x1a0)),setTimeout(()=>{removeAllFocus();},0x64);});}),document['addEventListener']('click',_0x367c7b=>{const _0x46b250=_0x2b8729;!customCurrencySelect[_0x46b250(0x15e)](_0x367c7b[_0x46b250(0x154)])&&(currencyTrigger['classList'][_0x46b250(0xe4)](_0x46b250(0x1a0)),currencyDropdown[_0x46b250(0x119)][_0x46b250(0xe4)](_0x46b250(0x157))),!customTimeframeSelect[_0x46b250(0x15e)](_0x367c7b[_0x46b250(0x154)])&&(timeframeTrigger['classList'][_0x46b250(0xe4)](_0x46b250(0x1a0)),timeframeDropdown[_0x46b250(0x119)][_0x46b250(0xe4)](_0x46b250(0x157)));}),currencyDropdown['querySelectorAll'](_0x2b8729(0x181))['forEach'](_0x33f131=>{const _0x2b846c=_0x2b8729;_0x33f131[_0x2b846c(0x169)](_0x2b846c(0x109),_0x31f172=>{const _0x320746=_0x2b846c;_0x31f172[_0x320746(0x19e)]();const _0x30a48b=_0x33f131['dataset'][_0x320746(0x182)],_0x3be323=_0x33f131[_0x320746(0x16a)][_0x320746(0x172)],_0x2feca9=_0x33f131[_0x320746(0x16a)][_0x320746(0x170)];currencySelect[_0x320746(0x182)]=_0x30a48b,currentMode==='otc'?currencyText[_0x320746(0x17e)]=_0x30a48b+_0x320746(0x161):currencyText[_0x320746(0x17e)]=_0x30a48b,flag1&&flag2&&_0x3be323&&_0x2feca9&&(flag1[_0x320746(0x178)]=_0x320746(0x15c)+_0x3be323+_0x320746(0x104),flag2[_0x320746(0x178)]=_0x320746(0x15c)+_0x2feca9+'.svg'),currencyDropdown[_0x320746(0x171)](_0x320746(0x181))['forEach'](_0xaca0a6=>{const _0x312ba7=_0x320746;_0xaca0a6[_0x312ba7(0x119)][_0x312ba7(0xe4)](_0x312ba7(0xe9));}),_0x33f131['classList']['add'](_0x320746(0xe9)),currencyTrigger[_0x320746(0x119)]['remove'](_0x320746(0x1a0)),currencyDropdown[_0x320746(0x119)]['remove']('open'),currencySelect[_0x320746(0x13a)](new Event(_0x320746(0x13f))),setTimeout(()=>{removeAllFocus();},0x64);});}),currencySelect[_0x2b8729(0x169)](_0x2b8729(0x13f),()=>{updateCurrencyOptions(),updateCustomCurrencyOptions();}),timeframeSelect[_0x2b8729(0x169)]('change',()=>{const _0x1abab8=_0x2b8729;timeframeSelect[_0x1abab8(0x15a)]['outline']=_0x1abab8(0x16c),timeframeSelect[_0x1abab8(0x15a)][_0x1abab8(0x147)]=_0x1abab8(0x184),timeframeSelect[_0x1abab8(0x15a)][_0x1abab8(0x17c)]=_0x1abab8(0x12e),setTimeout(()=>{const _0x4d4c2b=_0x1abab8;timeframeSelect[_0x4d4c2b(0x141)](),removeAllFocus();},0x64);});function removeAllFocus(){const _0x269e03=_0x2b8729;document[_0x269e03(0xfe)]&&document[_0x269e03(0xfe)]!==document['body']&&document['activeElement'][_0x269e03(0x141)](),document[_0x269e03(0xdf)]&&(document[_0x269e03(0xdf)][_0x269e03(0x127)](),document[_0x269e03(0xdf)][_0x269e03(0x141)]());}document[_0x2b8729(0x169)](_0x2b8729(0x16d),_0x596cda=>{const _0x5d4a36=_0x2b8729;if(_0x596cda[_0x5d4a36(0x154)]===currencySelect||_0x596cda['target']===timeframeSelect)return;document[_0x5d4a36(0xfe)]&&document[_0x5d4a36(0xfe)]!==_0x596cda['target']&&document[_0x5d4a36(0xfe)]!==currencySelect&&document[_0x5d4a36(0xfe)]!==timeframeSelect&&document[_0x5d4a36(0xfe)]['blur']();},!![]),document[_0x2b8729(0x169)](_0x2b8729(0x164),_0x48bf5f=>{const _0x4e84fd=_0x2b8729,_0x1b6830=[currencySelect,timeframeSelect,getSignalBtn,newPhotoBtn,customLanguageSelect,signalPlaceholder,...modeButtons];!_0x1b6830[_0x4e84fd(0x19b)](_0x48bf5f[_0x4e84fd(0x154)])&&!_0x1b6830['some'](_0x4d1ec=>_0x4d1ec['contains'](_0x48bf5f[_0x4e84fd(0x154)]))&&setTimeout(()=>{removeAllFocus();},0x64);},!![]),document['addEventListener'](_0x2b8729(0x113),_0xeeaef4=>{const _0x525ab3=_0x2b8729;if(_0xeeaef4[_0x525ab3(0x154)]===currencySelect||_0xeeaef4[_0x525ab3(0x154)]===timeframeSelect)return;if(document['activeElement']===currencySelect||document[_0x525ab3(0xfe)]===timeframeSelect){const _0x63339f=document[_0x525ab3(0xfe)];_0x63339f[_0x525ab3(0x15a)][_0x525ab3(0x132)]=_0x525ab3(0x16c),_0x63339f[_0x525ab3(0x15a)][_0x525ab3(0x147)]=_0x525ab3(0x184),_0x63339f[_0x525ab3(0x15a)][_0x525ab3(0x17c)]=_0x525ab3(0x12e);}document[_0x525ab3(0xfe)]&&document['activeElement']!==_0xeeaef4['target']&&document[_0x525ab3(0xfe)]!==currencySelect&&document[_0x525ab3(0xfe)]!==timeframeSelect&&document[_0x525ab3(0xfe)]['blur']();},!![]);const handlePlaceholderClick=_0x26ebc6=>{const _0xaac06e=_0x2b8729;_0x26ebc6['preventDefault'](),_0x26ebc6['stopPropagation'](),imageInput[_0xaac06e(0x109)](),setTimeout(()=>{const _0x3c98ca=_0xaac06e;signalPlaceholder[_0x3c98ca(0x141)](),document[_0x3c98ca(0xfe)]&&document['activeElement'][_0x3c98ca(0x141)](),document['body']&&(document[_0x3c98ca(0xdf)][_0x3c98ca(0x127)](),document[_0x3c98ca(0xdf)]['blur']());},0x0);};function _0x261b(){const _0x7cae5d=['currencyTrigger','30s','АНАЛИЗИРУЮ...','focus','timeframeSelect','ready','4759240TRNkjy','querySelector','createElement','.indicator-item','0\x202px\x208px\x20rgba(0,\x200,\x200,\x200.2)','languageModal','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<img\x20src=\x22svg/','46QSZVRp','outline','opacity','loading','timeframeDropdown','currencyText','ПРОДАЖА','961715iPEEra','getAttribute','dispatchEvent','createTextNode','sell','progressFill','mouseleave','change','.indicator-status','blur','12GTVbMq','Направление','languageModalList','readyState','insertBefore','borderColor','flex','Выберите\x20язык','customTimeframeSelect','floor','920094KykFeE','toUpperCase','toggle','direction','SELL','Готово\x20✓','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<svg\x20width=\x2240\x22\x20height=\x2240\x22\x20viewBox=\x220\x200\x2024\x2024\x22\x20fill=\x22none\x22\x20xmlns=\x22http://www.w3.org/2000/svg\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<path\x20d=\x22M7\x2013L12\x2018L17\x2013M7\x206L12\x2011L17\x206\x22\x20stroke=\x22currentColor\x22\x20stroke-width=\x222\x22\x20stroke-linecap=\x22round\x22\x20stroke-linejoin=\x22round\x22/>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</svg>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','safeAreaInsets','target','loadMorePhotos','appendChild','open','linear-gradient(135deg,\x20#3b82f6\x200%,\x20#3b82f6\x20100%)','paddingTop','style','svg/gb.svg','svg/','opacity\x200.5s\x20ease,\x20transform\x200.5s\x20ease','contains','result','buy','\x20OTC','nextSibling','lang','touchend','GET\x20SIGNAL','\x22\x20class=\x22flag-icon\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20','30M','ПОКУПКА','addEventListener','dataset','translateY(0)\x20scale(1)','none','touchstart','width','.language-modal-title','flag2','querySelectorAll','flag1','15m','placeholderText','preventDefault','[data-i18n]','signalPlaceholder','src','find','mouseup','Accuracy','boxShadow','.language-modal-option','textContent','languageModalClose','background','.custom-option','value','mode','rgba(255,\x20255,\x20255,\x200.2)','nodeType','Вычисление\x20индикаторов','24vPhuXK','readAsDataURL','15S','svg','getSignal','disabled','language','setItem','Analyzing\x20technical\x20indicators...','60558nnyrMV','0.5','top','getElementById','scale(1)','WebApp','.custom-option[data-value=\x22EURUSD\x22]','custom-option','onload','block','detailDirection','includes','direction-icon\x20','data-i18n','stopPropagation','display','active','down','Click\x20to\x20take\x20a\x20photo\x20or\x20select\x20an\x20image','body','calculatingIndicators','translateY(20px)\x20scale(0.95)','not-allowed','label','remove','Таймфрейм','detailTimeframe','getItem','random','selected','innerHTML','pointer','ПОЛУЧИТЬ\x20СИГНАЛ','109287ttMKwN','otc','Telegram','30uawuvY','length','currencySelect','add','Анализ\x20технических\x20индикаторов...','transform','Загрузить\x20еще\x20фото','\x22\x20class=\x22flag-icon\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<img\x20src=\x22svg/','opacity\x200.5s\x20ease','Currency\x20Pair','.calculating-title','newPhotoBtn','calculating','div','activeElement','forEach','cursor','Ready\x20✓','analyzingIndicators','className','.svg','scale(1.02)','264UsPNpI','svg/ru.svg','signalCurrencyFlags','click','options','Calculating...','</span>','analyzing','completed','enableClosingConfirmation','touchcancel','all\x200.3s\x20ease','SIGNAL','mousedown','detailPair','341808LRqRwk','BUY','.placeholder-text','1563188ZaUVdB','classList','scale(0.95)','transition','detailAccuracy','Вычисляется...','Timeframe','.svg\x22\x20alt=\x22','Direction','files','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<svg\x20width=\x2240\x22\x20height=\x2240\x22\x20viewBox=\x220\x200\x2024\x2024\x22\x20fill=\x22none\x22\x20xmlns=\x22http://www.w3.org/2000/svg\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<path\x20d=\x22M7\x2017L12\x2012L17\x2017M7\x2011L12\x206L17\x2011\x22\x20stroke=\x22currentColor\x22\x20stroke-width=\x222\x22\x20stroke-linecap=\x22round\x22\x20stroke-linejoin=\x22round\x22/>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</svg>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','imageInput'];_0x261b=function(){return _0x7cae5d;};return _0x261b();}signalPlaceholder['addEventListener'](_0x2b8729(0x113),_0x405e27=>_0x405e27[_0x2b8729(0x175)]()),signalPlaceholder[_0x2b8729(0x169)](_0x2b8729(0x16d),_0x3756ce=>_0x3756ce[_0x2b8729(0x175)]()),signalPlaceholder[_0x2b8729(0x169)]('click',handlePlaceholderClick),signalPlaceholder[_0x2b8729(0x169)](_0x2b8729(0x164),_0x41b6a4=>{const _0x2ddf44=_0x2b8729;_0x41b6a4[_0x2ddf44(0x175)](),handlePlaceholderClick(_0x41b6a4),signalPlaceholder[_0x2ddf44(0x141)]();}),signalPlaceholder[_0x2b8729(0x169)]('mouseup',_0x2091e3=>{const _0x5eb2bf=_0x2b8729;_0x2091e3['preventDefault'](),signalPlaceholder[_0x5eb2bf(0x141)]();}),signalPlaceholder[_0x2b8729(0x169)](_0x2b8729(0x13e),()=>signalPlaceholder['blur']()),signalPlaceholder[_0x2b8729(0x169)](_0x2b8729(0x110),()=>signalPlaceholder[_0x2b8729(0x141)]()),imageInput['addEventListener']('change',_0x1a918d=>{const _0x1a5c14=_0x2b8729,_0x94bcb6=_0x1a918d[_0x1a5c14(0x154)][_0x1a5c14(0x121)][0x0];if(_0x94bcb6){const _0x4d4d5a=new FileReader();_0x4d4d5a[_0x1a5c14(0x198)]=_0x1fa632=>{const _0x298933=_0x1a5c14;selectedImage=_0x1fa632[_0x298933(0x154)][_0x298933(0x15f)],previewImage[_0x298933(0x178)]=selectedImage,signalPlaceholder['style']['opacity']='0',signalPlaceholder[_0x298933(0x15a)][_0x298933(0xf5)]=_0x298933(0x11a),setTimeout(()=>{const _0x1b6068=_0x298933;signalPlaceholder[_0x1b6068(0x15a)][_0x1b6068(0x19f)]=_0x1b6068(0x16c),previewImage['style'][_0x1b6068(0x19f)]=_0x1b6068(0x199),previewImage[_0x1b6068(0x15a)][_0x1b6068(0x133)]='0',signalInfo[_0x1b6068(0x15a)]['display']=_0x1b6068(0x16c),setTimeout(()=>{const _0x313ee8=_0x1b6068;previewImage['style'][_0x313ee8(0x11b)]='opacity\x200.5s\x20ease',previewImage[_0x313ee8(0x15a)]['opacity']='1';},0x32);},0x12c),getSignalBtn[_0x298933(0x18c)]=![],getSignalBtn['style'][_0x298933(0x133)]='1',getSignalBtn[_0x298933(0x15a)][_0x298933(0x100)]=_0x298933(0xeb),getSignalBtn[_0x298933(0x15a)]['transform']='scale(1)';},_0x4d4d5a[_0x1a5c14(0x188)](_0x94bcb6);}});const handleGetSignalClick=_0xf55086=>{const _0x216878=_0x2b8729;_0xf55086[_0x216878(0x175)](),_0xf55086['stopPropagation']();if(!selectedImage){getSignalBtn['style'][_0x216878(0x11b)]=_0x216878(0x111),getSignalBtn[_0x216878(0x15a)]['transform']='scale(0.95)',getSignalBtn[_0x216878(0x15a)]['opacity']='0.7',setTimeout(()=>{const _0x2feb87=_0x216878;getSignalBtn[_0x2feb87(0x15a)][_0x2feb87(0xf5)]=_0x2feb87(0x194),getSignalBtn[_0x2feb87(0x15a)][_0x2feb87(0x133)]='1';},0x96),setTimeout(()=>{const _0x1df7a2=_0x216878;getSignalBtn['style'][_0x1df7a2(0x11b)]='',getSignalBtn[_0x1df7a2(0x141)](),document[_0x1df7a2(0xfe)]&&document[_0x1df7a2(0xfe)][_0x1df7a2(0x141)](),document[_0x1df7a2(0xdf)]&&(document[_0x1df7a2(0xdf)]['focus'](),document[_0x1df7a2(0xdf)]['blur']());},0x12c);return;}previewImage[_0x216878(0x15a)][_0x216878(0x11b)]='opacity\x200.3s\x20ease,\x20transform\x200.3s\x20ease',previewImage[_0x216878(0x15a)][_0x216878(0x133)]='0',previewImage[_0x216878(0x15a)][_0x216878(0xf5)]=_0x216878(0x11a),getSignalBtn[_0x216878(0x18c)]=!![],getSignalBtn[_0x216878(0x119)][_0x216878(0xf3)]('loading'),getSignalBtn['textContent']=translations[currentLanguage][_0x216878(0x10d)],getSignalBtn[_0x216878(0x15a)][_0x216878(0x180)]=_0x216878(0x158),signalPlaceholder[_0x216878(0x15a)][_0x216878(0x19f)]=_0x216878(0x16c),signalInfo[_0x216878(0x15a)]['display']=_0x216878(0x16c),setTimeout(()=>{const _0x4e41d4=_0x216878;previewImage[_0x4e41d4(0x15a)][_0x4e41d4(0x19f)]=_0x4e41d4(0x16c),calculatingIndicators['style'][_0x4e41d4(0x19f)]=_0x4e41d4(0x148),calculatingIndicators[_0x4e41d4(0x15a)][_0x4e41d4(0x133)]='0',setTimeout(()=>{const _0x5c807e=_0x4e41d4;calculatingIndicators[_0x5c807e(0x15a)][_0x5c807e(0x11b)]=_0x5c807e(0xf8),calculatingIndicators[_0x5c807e(0x15a)][_0x5c807e(0x133)]='1';},0x32),animateIndicatorsCalculation();},0x12c),setTimeout(()=>{const _0x8f74e9=_0x216878;calculatingIndicators[_0x8f74e9(0x15a)][_0x8f74e9(0x133)]='0',setTimeout(()=>{const _0x14396b=_0x8f74e9;calculatingIndicators[_0x14396b(0x15a)][_0x14396b(0x19f)]='none',analyzeSignal(),getSignalBtn['classList'][_0x14396b(0xe4)]('loading'),getSignalBtn[_0x14396b(0x15a)]['display']=_0x14396b(0x16c),newPhotoBtn[_0x14396b(0x15a)]['display']='flex',newPhotoBtn[_0x14396b(0x15a)][_0x14396b(0x133)]='0',newPhotoBtn[_0x14396b(0x18c)]=![],newPhotoBtn[_0x14396b(0x119)][_0x14396b(0xe4)](_0x14396b(0x134)),setTimeout(()=>{const _0x27fcd3=_0x14396b;newPhotoBtn['style'][_0x27fcd3(0x11b)]='opacity\x200.5s\x20ease',newPhotoBtn['style'][_0x27fcd3(0x133)]='1';},0x64),setTimeout(()=>{const _0x2a161e=_0x14396b;getSignalBtn[_0x2a161e(0x141)](),document[_0x2a161e(0xfe)]&&document[_0x2a161e(0xfe)][_0x2a161e(0x141)](),document['body']&&(document[_0x2a161e(0xdf)][_0x2a161e(0x127)](),document[_0x2a161e(0xdf)][_0x2a161e(0x141)]());},0x0);},0x1f4);},0xaf0);};getSignalBtn[_0x2b8729(0x169)]('mousedown',_0x49edb3=>_0x49edb3[_0x2b8729(0x175)]()),getSignalBtn['addEventListener'](_0x2b8729(0x16d),_0x3511f2=>_0x3511f2['preventDefault']()),getSignalBtn[_0x2b8729(0x169)](_0x2b8729(0x109),handleGetSignalClick),getSignalBtn[_0x2b8729(0x169)](_0x2b8729(0x164),_0x3ef393=>{const _0x17df09=_0x2b8729;_0x3ef393[_0x17df09(0x175)](),handleGetSignalClick(_0x3ef393),getSignalBtn['blur']();}),getSignalBtn[_0x2b8729(0x169)](_0x2b8729(0x17a),_0x2e638a=>{const _0x785afa=_0x2b8729;_0x2e638a[_0x785afa(0x175)](),getSignalBtn[_0x785afa(0x141)]();}),getSignalBtn['addEventListener'](_0x2b8729(0x13e),()=>getSignalBtn[_0x2b8729(0x141)]()),getSignalBtn[_0x2b8729(0x169)]('touchcancel',()=>getSignalBtn[_0x2b8729(0x141)]()),getSignalBtn[_0x2b8729(0x169)](_0x2b8729(0x13e),()=>{const _0x58d4b7=_0x2b8729;getSignalBtn[_0x58d4b7(0x141)]();});function animateIndicatorsCalculation(){const _0x5ef955=_0x2b8729,_0x4d6361=calculatingIndicators[_0x5ef955(0x171)](_0x5ef955(0x12d)),_0x277612=0x190;_0x4d6361['forEach'](_0x38a206=>{const _0x15fe28=_0x5ef955,_0x3f4476=_0x38a206['querySelector']('.indicator-status');_0x3f4476['classList'][_0x15fe28(0xe4)](_0x15fe28(0x10e)),_0x3f4476['classList']['add'](_0x15fe28(0xfc)),_0x3f4476['textContent']=translations[currentLanguage][_0x15fe28(0xfc)];}),_0x4d6361[_0x5ef955(0xff)]((_0x9db9d9,_0x149573)=>{setTimeout(()=>{const _0x2bb407=_0x48b4,_0x4d04e5=_0x9db9d9[_0x2bb407(0x12b)](_0x2bb407(0x140));_0x4d04e5['classList']['remove']('calculating'),_0x4d04e5[_0x2bb407(0x119)][_0x2bb407(0xf3)](_0x2bb407(0x10e)),_0x4d04e5['textContent']=translations[currentLanguage]['ready'];},_0x277612*(_0x149573+0x1));});}function _0x48b4(_0x320d8c,_0x2bf9c7){_0x320d8c=_0x320d8c-0xdf;const _0x261b15=_0x261b();let _0x48b4ea=_0x261b15[_0x320d8c];return _0x48b4ea;}function analyzeSignal(){const _0x1a4304=_0x2b8729,_0x5e35ed=[_0x1a4304(0x116),_0x1a4304(0x150)],_0x6f8656=_0x5e35ed[Math[_0x1a4304(0x14b)](Math[_0x1a4304(0xe8)]()*_0x5e35ed[_0x1a4304(0xf1)])],_0x527b8e=_0x6f8656===_0x1a4304(0x116),_0x263c1a=Math['floor'](Math[_0x1a4304(0xe8)]()*0x13)+0x4b,_0x218996=currencySelect[_0x1a4304(0x10a)][currencySelect['selectedIndex']],_0xb5795d=_0x218996[_0x1a4304(0x182)],_0x35c108=_0x218996[_0x1a4304(0x16a)][_0x1a4304(0x172)],_0x403763=_0x218996['dataset'][_0x1a4304(0x170)],_0x430788=document[_0x1a4304(0x193)](_0x1a4304(0x108));_0x430788&&_0x35c108&&_0x403763&&(_0x430788[_0x1a4304(0xea)]=_0x1a4304(0x130)+_0x35c108+_0x1a4304(0x11f)+_0x35c108[_0x1a4304(0x14d)]()+_0x1a4304(0xf7)+_0x403763+_0x1a4304(0x11f)+_0x403763[_0x1a4304(0x14d)]()+_0x1a4304(0x166));const _0x56038e=currentMode===_0x1a4304(0xee)?_0xb5795d+'\x20OTC':_0xb5795d;document[_0x1a4304(0x193)](_0x1a4304(0x114))[_0x1a4304(0x17e)]=_0x56038e,document['getElementById'](_0x1a4304(0xe6))[_0x1a4304(0x17e)]=timeframeSelect[_0x1a4304(0x182)];const _0x2ffba1=document[_0x1a4304(0x193)](_0x1a4304(0x11c));let _0x514dc1=0x0;const _0x55524e=setInterval(()=>{const _0x4097f9=_0x1a4304;_0x514dc1+=0x2,_0x514dc1>=_0x263c1a&&(_0x514dc1=_0x263c1a,clearInterval(_0x55524e)),_0x2ffba1[_0x4097f9(0x17e)]=_0x514dc1+'%';},0x1e),_0x461816=document[_0x1a4304(0x193)](_0x1a4304(0x19a)),_0x5c60b3=document[_0x1a4304(0x193)]('directionIcon'),_0x2d3eaf=translations[currentLanguage];_0x461816[_0x1a4304(0x17e)]=_0x527b8e?_0x2d3eaf[_0x1a4304(0x160)]:_0x2d3eaf['sell'],_0x461816[_0x1a4304(0x103)]='direction-text\x20'+(_0x527b8e?'up':_0x1a4304(0x1a1)),_0x461816[_0x1a4304(0x16a)][_0x1a4304(0x14f)]=_0x527b8e?_0x1a4304(0x160):_0x1a4304(0x13c);_0x5c60b3&&(_0x5c60b3['className']=_0x1a4304(0x19c)+(_0x527b8e?'up':_0x1a4304(0x1a1)),_0x527b8e?_0x5c60b3['innerHTML']=_0x1a4304(0x122):_0x5c60b3[_0x1a4304(0xea)]=_0x1a4304(0x152));signalInfo[_0x1a4304(0x15a)]['display']=_0x1a4304(0x199),signalInfo[_0x1a4304(0x15a)][_0x1a4304(0x133)]='0',signalInfo[_0x1a4304(0x15a)][_0x1a4304(0xf5)]=_0x1a4304(0xe1),setTimeout(()=>{const _0xf5787=_0x1a4304;signalInfo[_0xf5787(0x15a)][_0xf5787(0x11b)]=_0xf5787(0x15d),signalInfo[_0xf5787(0x15a)]['opacity']='1',signalInfo[_0xf5787(0x15a)][_0xf5787(0xf5)]=_0xf5787(0x16b);},0x32);const _0x3122cc=document['getElementById'](_0x1a4304(0x13d)),_0x2d1894=document[_0x1a4304(0x193)]('progressPercent');_0x3122cc[_0x1a4304(0x15a)][_0x1a4304(0x16e)]='0%';let _0x1b1536=0x0;const _0x1b8822=setInterval(()=>{const _0x1dfd39=_0x1a4304;_0x1b1536+=0x2,_0x1b1536>0x64&&(_0x1b1536=0x64,clearInterval(_0x1b8822)),_0x3122cc[_0x1dfd39(0x15a)][_0x1dfd39(0x16e)]=_0x1b1536+'%',_0x2d1894[_0x1dfd39(0x17e)]=_0x1b1536+'%';},0x14);}function updateLanguage(){const _0x320dc6=_0x2b8729,_0xab11=translations[currentLanguage];languageFlag&&(languageFlag[_0x320dc6(0x178)]=currentLanguage==='en'?_0x320dc6(0x15b):_0x320dc6(0x107));const _0x46af66=document[_0x320dc6(0x12b)](_0x320dc6(0x117));_0x46af66&&(_0x46af66[_0x320dc6(0x17e)]=_0xab11[_0x320dc6(0x174)]);getSignalBtn&&!getSignalBtn[_0x320dc6(0x119)]['contains'](_0x320dc6(0x134))&&(getSignalBtn[_0x320dc6(0x17e)]=_0xab11[_0x320dc6(0x18b)]);const _0x189ab1=newPhotoBtn['querySelector'](_0x320dc6(0x18a));if(_0x189ab1){let _0x410a45=_0x189ab1[_0x320dc6(0x162)];while(_0x410a45&&_0x410a45[_0x320dc6(0x185)]===0x3){const _0x5782a4=_0x410a45;_0x410a45=_0x410a45[_0x320dc6(0x162)],_0x5782a4[_0x320dc6(0xe4)]();}const _0x1bbfad=document[_0x320dc6(0x13b)]('\x20'+_0xab11[_0x320dc6(0x155)]);newPhotoBtn[_0x320dc6(0x146)](_0x1bbfad,_0x189ab1[_0x320dc6(0x162)]);}const _0x473616=document[_0x320dc6(0x12b)](_0x320dc6(0xfa));_0x473616&&(_0x473616[_0x320dc6(0x17e)]=_0xab11[_0x320dc6(0xe0)]);const _0x2aab4e=document[_0x320dc6(0x12b)]('.calculating-text');_0x2aab4e&&(_0x2aab4e[_0x320dc6(0x17e)]=_0xab11[_0x320dc6(0x102)]);document[_0x320dc6(0x171)](_0x320dc6(0x176))[_0x320dc6(0xff)](_0x330e5e=>{const _0x4e5451=_0x320dc6,_0x39ebf0=_0x330e5e[_0x4e5451(0x139)](_0x4e5451(0x19d));_0xab11[_0x39ebf0]&&(_0x330e5e[_0x4e5451(0x17e)]=_0xab11[_0x39ebf0]);});const _0x3a36fc=document[_0x320dc6(0x193)](_0x320dc6(0x19a));if(_0x3a36fc&&_0x3a36fc[_0x320dc6(0x16a)][_0x320dc6(0x14f)]){const _0x49888a=_0x3a36fc['dataset'][_0x320dc6(0x14f)];_0x3a36fc[_0x320dc6(0x17e)]=_0x49888a===_0x320dc6(0x160)?_0xab11[_0x320dc6(0x160)]:_0xab11[_0x320dc6(0x13c)];}updateLanguageModalTitle();}function initLanguage(){const _0x560379=_0x2b8729,_0x524edc=localStorage[_0x560379(0xe7)](_0x560379(0x18d));_0x524edc&&(_0x524edc==='en'||_0x524edc==='ru')?currentLanguage=_0x524edc:currentLanguage='en',languageFlag&&(languageFlag[_0x560379(0x178)]=currentLanguage==='en'?_0x560379(0x15b):_0x560379(0x107),languageModalList&&languageModalList['querySelectorAll']('.language-modal-option')[_0x560379(0xff)](_0x2589c5=>{const _0x3684eb=_0x560379;_0x2589c5[_0x3684eb(0x119)][_0x3684eb(0xe4)](_0x3684eb(0xe9)),_0x2589c5[_0x3684eb(0x16a)][_0x3684eb(0x163)]===currentLanguage&&_0x2589c5['classList']['add'](_0x3684eb(0xe9));})),updateLanguage();}function updateLanguageModalTitle(){const _0x20ffe5=_0x2b8729,_0x9b6eed=document[_0x20ffe5(0x12b)](_0x20ffe5(0x16f));_0x9b6eed&&(_0x9b6eed[_0x20ffe5(0x17e)]=currentLanguage==='en'?'Select\x20the\x20language':_0x20ffe5(0x149));}document[_0x2b8729(0x169)](_0x2b8729(0x109),_0x397a44=>{});const handleNewPhotoClick=_0x98ad12=>{const _0x515dd6=_0x2b8729;_0x98ad12[_0x515dd6(0x175)](),_0x98ad12[_0x515dd6(0x19e)](),newPhotoBtn['classList'][_0x515dd6(0xe4)](_0x515dd6(0x134)),newPhotoBtn['disabled']=![],resetToPhotoUpload(),setTimeout(()=>{const _0x20dde8=_0x515dd6;newPhotoBtn[_0x20dde8(0x141)](),document[_0x20dde8(0xfe)]&&document[_0x20dde8(0xfe)]['blur'](),document[_0x20dde8(0xdf)]&&(document[_0x20dde8(0xdf)][_0x20dde8(0x127)](),document[_0x20dde8(0xdf)]['blur']());},0x0);};newPhotoBtn['addEventListener'](_0x2b8729(0x113),_0x2f49c8=>_0x2f49c8[_0x2b8729(0x175)]()),newPhotoBtn['addEventListener']('touchstart',_0x1f2806=>_0x1f2806[_0x2b8729(0x175)]()),newPhotoBtn['addEventListener'](_0x2b8729(0x109),handleNewPhotoClick),newPhotoBtn[_0x2b8729(0x169)](_0x2b8729(0x164),_0x336e86=>{const _0x384bf9=_0x2b8729;_0x336e86[_0x384bf9(0x175)](),handleNewPhotoClick(_0x336e86),newPhotoBtn[_0x384bf9(0x141)]();}),newPhotoBtn[_0x2b8729(0x169)]('mouseup',_0x545b15=>{const _0x474479=_0x2b8729;_0x545b15[_0x474479(0x175)](),newPhotoBtn[_0x474479(0x141)]();}),newPhotoBtn[_0x2b8729(0x169)](_0x2b8729(0x13e),()=>newPhotoBtn['blur']()),newPhotoBtn[_0x2b8729(0x169)](_0x2b8729(0x110),()=>newPhotoBtn[_0x2b8729(0x141)]());function resetToPhotoUpload(){const _0x224e5b=_0x2b8729;selectedImage=null,previewImage[_0x224e5b(0x178)]='',previewImage['style'][_0x224e5b(0x19f)]=_0x224e5b(0x16c),signalInfo[_0x224e5b(0x15a)][_0x224e5b(0x19f)]=_0x224e5b(0x16c),calculatingIndicators[_0x224e5b(0x15a)][_0x224e5b(0x19f)]=_0x224e5b(0x16c),calculatingIndicators[_0x224e5b(0x15a)][_0x224e5b(0x133)]='0',signalPlaceholder['style'][_0x224e5b(0x19f)]=_0x224e5b(0x148),signalPlaceholder['style']['opacity']='1',signalPlaceholder[_0x224e5b(0x15a)][_0x224e5b(0xf5)]=_0x224e5b(0x194),imageInput[_0x224e5b(0x182)]='';const _0x2f910c=calculatingIndicators[_0x224e5b(0x171)]('.indicator-status');_0x2f910c['forEach'](_0x168285=>{const _0x4d3dd4=_0x224e5b;_0x168285[_0x4d3dd4(0x119)]['remove'](_0x4d3dd4(0x10e)),_0x168285[_0x4d3dd4(0x119)][_0x4d3dd4(0xf3)](_0x4d3dd4(0xfc)),_0x168285[_0x4d3dd4(0x17e)]=_0x4d3dd4(0x11d);}),newPhotoBtn[_0x224e5b(0x15a)][_0x224e5b(0x133)]='0',newPhotoBtn[_0x224e5b(0x119)][_0x224e5b(0xe4)]('loading'),setTimeout(()=>{const _0x511615=_0x224e5b;newPhotoBtn['style'][_0x511615(0x19f)]='none',getSignalBtn[_0x511615(0x15a)]['display']=_0x511615(0x199),getSignalBtn[_0x511615(0x18c)]=!![],getSignalBtn[_0x511615(0x15a)][_0x511615(0x133)]='0.5',getSignalBtn[_0x511615(0x15a)][_0x511615(0x100)]='not-allowed',getSignalBtn[_0x511615(0x17e)]=translations[currentLanguage]['getSignal'],getSignalBtn[_0x511615(0x15a)][_0x511615(0x180)]='linear-gradient(135deg,\x20#3b82f6\x200%,\x20#60a5fa\x20100%)',getSignalBtn[_0x511615(0x119)][_0x511615(0xe4)](_0x511615(0x134));},0x12c);}initLanguage(),getSignalBtn['disabled']=!![],getSignalBtn[_0x2b8729(0x15a)][_0x2b8729(0x133)]=_0x2b8729(0x191),getSignalBtn[_0x2b8729(0x15a)][_0x2b8729(0x100)]=_0x2b8729(0xe2),updateTimeframeOptions(),updateCurrencyOptions();const initialOption=currencyDropdown[_0x2b8729(0x12b)](_0x2b8729(0x196));initialOption&&initialOption[_0x2b8729(0x119)][_0x2b8729(0xf3)](_0x2b8729(0xe9));function updateCustomCurrencyOptions(){const _0x2443ce=_0x2b8729,_0x33675b=currencyDropdown['querySelectorAll'](_0x2443ce(0x181)),_0x504510=currencySelect[_0x2443ce(0x182)];_0x33675b['forEach'](_0x4a9cd7=>{const _0x39cf27=_0x2443ce,_0x1e840f=_0x4a9cd7[_0x39cf27(0x16a)][_0x39cf27(0x182)],_0x3eed7c=_0x4a9cd7[_0x39cf27(0x12b)]('.currency-text');currentMode==='otc'?_0x3eed7c[_0x39cf27(0x17e)]=_0x1e840f+_0x39cf27(0x161):_0x3eed7c[_0x39cf27(0x17e)]=_0x1e840f,_0x1e840f===_0x504510?_0x4a9cd7[_0x39cf27(0x119)][_0x39cf27(0xf3)](_0x39cf27(0xe9)):_0x4a9cd7[_0x39cf27(0x119)][_0x39cf27(0xe4)]('selected');}),currentMode===_0x2443ce(0xee)?currencyText['textContent']=_0x504510+_0x2443ce(0x161):currencyText[_0x2443ce(0x17e)]=_0x504510;}
+// DOM Elements
+const modeButtons = document.querySelectorAll('.mode-btn');
+const currencySelect = document.getElementById('currencySelect');
+const customCurrencySelect = document.getElementById('customCurrencySelect');
+const currencyTrigger = document.getElementById('currencyTrigger');
+const currencyDropdown = document.getElementById('currencyDropdown');
+const currencyText = document.getElementById('currencyText');
+const flag1 = document.getElementById('flag1');
+const flag2 = document.getElementById('flag2');
+const timeframeSelect = document.getElementById('timeframeSelect');
+const customTimeframeSelect = document.getElementById('customTimeframeSelect');
+const timeframeTrigger = document.getElementById('timeframeTrigger');
+const timeframeDropdown = document.getElementById('timeframeDropdown');
+const timeframeText = document.getElementById('timeframeText');
+const signalPlaceholder = document.getElementById('signalPlaceholder');
+const imageInput = document.getElementById('imageInput');
+const previewImage = document.getElementById('previewImage');
+const signalInfo = document.getElementById('signalInfo');
+const calculatingIndicators = document.getElementById('calculatingIndicators');
+const getSignalBtn = document.getElementById('getSignalBtn');
+const customLanguageSelect = document.getElementById('customLanguageSelect');
+const languageTrigger = document.getElementById('languageTrigger');
+const languageModal = document.getElementById('languageModal');
+const languageModalClose = document.getElementById('languageModalClose');
+const languageModalList = document.getElementById('languageModalList');
+const languageFlag = document.getElementById('languageFlag');
+const newPhotoBtn = document.getElementById('newPhotoBtn');
+
+// State
+let selectedImage = null;
+let currentMode = 'otc';
+let currentLanguage = 'en'; // 'en' or 'ru'
+
+// Translations
+const translations = {
+    en: {
+        selectLanguage: 'Select Language',
+        placeholderText: 'Click to take a photo or select an image',
+        getSignal: 'GET SIGNAL',
+        analyzing: 'ANALYZING...',
+        loadMorePhotos: 'Load more photos',
+        calculatingIndicators: 'Calculating indicators',
+        analyzingIndicators: 'Analyzing technical indicators...',
+        calculating: 'Calculating...',
+        ready: 'Ready ✓',
+        sign: 'SIGNAL',
+        currencyPair: 'Currency Pair',
+        timeframe: 'Timeframe',
+        accuracy: 'Accuracy',
+        direction: 'Direction',
+        signalFound: 'Signal found',
+        buy: 'BUY',
+        sell: 'SELL'
+    },
+    ru: {
+        selectLanguage: 'Выбрать язык',
+        placeholderText: 'Нажмите, чтобы сделать фото или выбрать изображение',
+        getSignal: 'ПОЛУЧИТЬ СИГНАЛ',
+        analyzing: 'АНАЛИЗИРУЮ...',
+        loadMorePhotos: 'Загрузить еще фото',
+        calculatingIndicators: 'Вычисление индикаторов',
+        analyzingIndicators: 'Анализ технических индикаторов...',
+        calculating: 'Вычисляется...',
+        ready: 'Готово ✓',
+        sign: 'СИГНАЛ',
+        currencyPair: 'Валютная пара',
+        timeframe: 'Таймфрейм',
+        accuracy: 'Точность',
+        direction: 'Направление',
+        signalFound: 'Сигнал найден',
+        buy: 'ПОКУПКА',
+        sell: 'ПРОДАЖА'
+    },
+    hi: {
+        selectLanguage: 'भाषा चुनें',
+        placeholderText: 'फोटो लेने या छवि चुनने के लिए क्लिक करें',
+        getSignal: 'सिग्नल प्राप्त करें',
+        analyzing: 'विश्लेषण कर रहे हैं...',
+        loadMorePhotos: 'और फोटो लोड करें',
+        calculatingIndicators: 'संकेतकों की गणना',
+        analyzingIndicators: 'तकनीकी संकेतकों का विश्लेषण...',
+        calculating: 'गणना कर रहे हैं...',
+        ready: 'तैयार ✓',
+        sign: 'सिग्नल',
+        currencyPair: 'मुद्रा जोड़ी',
+        timeframe: 'समय सीमा',
+        accuracy: 'सटीकता',
+        direction: 'दिशा',
+        signalFound: 'सिग्नल मिला',
+        buy: 'खरीदें',
+        sell: 'बेचें'
+    },
+    ar: {
+        selectLanguage: 'اختر اللغة',
+        placeholderText: 'انقر لالتقاط صورة أو تحديد صورة',
+        getSignal: 'الحصول على إشارة',
+        analyzing: 'جارٍ التحليل...',
+        loadMorePhotos: 'تحميل المزيد من الصور',
+        calculatingIndicators: 'حساب المؤشرات',
+        analyzingIndicators: 'تحليل المؤشرات الفنية...',
+        calculating: 'جارٍ الحساب...',
+        ready: 'جاهز ✓',
+        sign: 'إشارة',
+        currencyPair: 'زوج العملات',
+        timeframe: 'الإطار الزمني',
+        accuracy: 'الدقة',
+        direction: 'الاتجاه',
+        signalFound: 'تم العثور على إشارة',
+        buy: 'شراء',
+        sell: 'بيع'
+    },
+    tg: {
+        selectLanguage: 'Забонро интихоб кунед',
+        placeholderText: 'Барои гирифтани акс ё интихоби тасвир клик кунед',
+        getSignal: 'СИГНАЛ ГИРЕД',
+        analyzing: 'ТАҲЛИЛ МЕКУНЕМ...',
+        loadMorePhotos: 'Аксҳои бештарро бор кунед',
+        calculatingIndicators: 'Ҳисоб кардани нишондиҳандаҳо',
+        analyzingIndicators: 'Таҳлили нишондиҳандаҳои техникӣ...',
+        calculating: 'Ҳисоб карда мешавад...',
+        ready: 'Омода аст ✓',
+        sign: 'СИГНАЛ',
+        currencyPair: 'Ҷуфти асъор',
+        timeframe: 'Фосилаи вақт',
+        accuracy: 'Дақиқӣ',
+        direction: 'Самт',
+        signalFound: 'Сигнал ёфт шуд',
+        buy: 'ХАРИД',
+        sell: 'ФУРУШ'
+    },
+    uz: {
+        selectLanguage: 'Tilni tanlang',
+        placeholderText: 'Rasm olish yoki rasm tanlash uchun bosing',
+        getSignal: 'SIGNAL OLISH',
+        analyzing: 'TAHLIL QILINMOQDA...',
+        loadMorePhotos: 'Ko\'proq rasmlarni yuklash',
+        calculatingIndicators: 'Ko\'rsatkichlarni hisoblash',
+        analyzingIndicators: 'Texnik ko\'rsatkichlarni tahlil qilish...',
+        calculating: 'Hisoblanmoqda...',
+        ready: 'Tayyor ✓',
+        sign: 'SIGNAL',
+        currencyPair: 'Valyuta juftligi',
+        timeframe: 'Vaqt oralig\'i',
+        accuracy: 'Aniqlik',
+        direction: 'Yo\'nalish',
+        signalFound: 'Signal topildi',
+        buy: 'SOTIB OLISH',
+        sell: 'SOTISH'
+    },
+    tr: {
+        selectLanguage: 'Dil seçin',
+        placeholderText: 'Fotoğraf çekmek veya resim seçmek için tıklayın',
+        getSignal: 'SİNYAL AL',
+        analyzing: 'ANALİZ EDİLİYOR...',
+        loadMorePhotos: 'Daha fazla fotoğraf yükle',
+        calculatingIndicators: 'Göstergeler hesaplanıyor',
+        analyzingIndicators: 'Teknik göstergeler analiz ediliyor...',
+        calculating: 'Hesaplanıyor...',
+        ready: 'Hazır ✓',
+        sign: 'SİNYAL',
+        currencyPair: 'Döviz çifti',
+        timeframe: 'Zaman dilimi',
+        accuracy: 'Doğruluk',
+        direction: 'Yön',
+        signalFound: 'Sinyal bulundu',
+        buy: 'SATIN AL',
+        sell: 'SAT'
+    },
+    pt: {
+        selectLanguage: 'Selecione o idioma',
+        placeholderText: 'Clique para tirar uma foto ou selecionar uma imagem',
+        getSignal: 'OBTER SINAL',
+        analyzing: 'ANALISANDO...',
+        loadMorePhotos: 'Carregar mais fotos',
+        calculatingIndicators: 'Calculando indicadores',
+        analyzingIndicators: 'Analisando indicadores técnicos...',
+        calculating: 'Calculando...',
+        ready: 'Pronto ✓',
+        sign: 'SINAL',
+        currencyPair: 'Par de moedas',
+        timeframe: 'Período de tempo',
+        accuracy: 'Precisão',
+        direction: 'Direção',
+        signalFound: 'Sinal encontrado',
+        buy: 'COMPRAR',
+        sell: 'VENDER'
+    },
+    hy: {
+        selectLanguage: 'Ընտրեք լեզուն',
+        placeholderText: 'Կտտացրեք լուսանկարելու կամ պատկեր ընտրելու համար',
+        getSignal: 'ՍԻԳՆԱԼ ՍՏԱՆԱԼ',
+        analyzing: 'ՎԵՐԼՈՒԾՎՈՒՄ Է...',
+        loadMorePhotos: 'Բեռնել ավելի շատ լուսանկարներ',
+        calculatingIndicators: 'Ցուցանիշների հաշվարկ',
+        analyzingIndicators: 'Տեխնիկական ցուցանիշների վերլուծություն...',
+        calculating: 'Հաշվարկվում է...',
+        ready: 'Պատրաստ է ✓',
+        sign: 'ՍԻԳՆԱԼ',
+        currencyPair: 'Արժույթի զույգ',
+        timeframe: 'Ժամանակային շրջան',
+        accuracy: 'Ճշգրտություն',
+        direction: 'Ուղղություն',
+        signalFound: 'Սիգնալ գտնված է',
+        buy: 'ԳՆԵԼ',
+        sell: 'ՎԱՃԱՌԵԼ'
+    },
+    kk: {
+        selectLanguage: 'Тілді таңдаңыз',
+        placeholderText: 'Фото түсіру немесе сурет таңдау үшін басыңыз',
+        getSignal: 'СИГНАЛ АЛУ',
+        analyzing: 'ТАЛДАУ ЖҮРГІЗІЛУДЕ...',
+        loadMorePhotos: 'Көбірек фотосуреттерді жүктеу',
+        calculatingIndicators: 'Көрсеткіштерді есептеу',
+        analyzingIndicators: 'Техникалық көрсеткіштерді талдау...',
+        calculating: 'Есептелуде...',
+        ready: 'Дайын ✓',
+        sign: 'СИГНАЛ',
+        currencyPair: 'Валюта жұбы',
+        timeframe: 'Уақыт аралығы',
+        accuracy: 'Дәлдік',
+        direction: 'Бағыт',
+        signalFound: 'Сигнал табылды',
+        buy: 'САТЫП АЛУ',
+        sell: 'САТУ'
+    },
+    es: {
+        selectLanguage: 'Seleccionar idioma',
+        placeholderText: 'Haga clic para tomar una foto o seleccionar una imagen',
+        getSignal: 'OBTENER SEÑAL',
+        analyzing: 'ANALIZANDO...',
+        loadMorePhotos: 'Cargar más fotos',
+        calculatingIndicators: 'Calculando indicadores',
+        analyzingIndicators: 'Analizando indicadores técnicos...',
+        calculating: 'Calculando...',
+        ready: 'Listo ✓',
+        sign: 'SEÑAL',
+        currencyPair: 'Par de divisas',
+        timeframe: 'Marco temporal',
+        accuracy: 'Precisión',
+        direction: 'Dirección',
+        signalFound: 'Señal encontrada',
+        buy: 'COMPRAR',
+        sell: 'VENDER'
+    },
+    fr: {
+        selectLanguage: 'Sélectionner la langue',
+        placeholderText: 'Cliquez pour prendre une photo ou sélectionner une image',
+        getSignal: 'OBTENIR LE SIGNAL',
+        analyzing: 'ANALYSE EN COURS...',
+        loadMorePhotos: 'Charger plus de photos',
+        calculatingIndicators: 'Calcul des indicateurs',
+        analyzingIndicators: 'Analyse des indicateurs techniques...',
+        calculating: 'Calcul en cours...',
+        ready: 'Prêt ✓',
+        sign: 'SIGNAL',
+        currencyPair: 'Paire de devises',
+        timeframe: 'Période',
+        accuracy: 'Précision',
+        direction: 'Direction',
+        signalFound: 'Signal trouvé',
+        buy: 'ACHETER',
+        sell: 'VENDRE'
+    },
+    pl: {
+        selectLanguage: 'Wybierz język',
+        placeholderText: 'Kliknij, aby zrobić zdjęcie lub wybrać obraz',
+        getSignal: 'OTRZYMAJ SYGNAŁ',
+        analyzing: 'ANALIZUJĘ...',
+        loadMorePhotos: 'Załaduj więcej zdjęć',
+        calculatingIndicators: 'Obliczanie wskaźników',
+        analyzingIndicators: 'Analizowanie wskaźników technicznych...',
+        calculating: 'Obliczanie...',
+        ready: 'Gotowe ✓',
+        sign: 'SYGNAŁ',
+        currencyPair: 'Para walutowa',
+        timeframe: 'Ram czasowy',
+        accuracy: 'Dokładność',
+        direction: 'Kierunek',
+        signalFound: 'Znaleziono sygnał',
+        buy: 'KUP',
+        sell: 'SPRZEDAJ'
+    },
+    uk: {
+        selectLanguage: 'Виберіть мову',
+        placeholderText: 'Натисніть, щоб зробити фото або вибрати зображення',
+        getSignal: 'ОТРИМАТИ СИГНАЛ',
+        analyzing: 'АНАЛІЗУЮ...',
+        loadMorePhotos: 'Завантажити більше фото',
+        calculatingIndicators: 'Обчислення індикаторів',
+        analyzingIndicators: 'Аналіз технічних індикаторів...',
+        calculating: 'Обчислюється...',
+        ready: 'Готово ✓',
+        sign: 'СИГНАЛ',
+        currencyPair: 'Валютна пара',
+        timeframe: 'Таймфрейм',
+        accuracy: 'Точність',
+        direction: 'Напрямок',
+        signalFound: 'Сигнал знайдено',
+        buy: 'КУПИТИ',
+        sell: 'ПРОДАТИ'
+    },
+    it: {
+        selectLanguage: 'Seleziona la lingua',
+        placeholderText: 'Clicca per scattare una foto o selezionare un\'immagine',
+        getSignal: 'OTTIENI SEGNALE',
+        analyzing: 'ANALIZZANDO...',
+        loadMorePhotos: 'Carica più foto',
+        calculatingIndicators: 'Calcolo degli indicatori',
+        analyzingIndicators: 'Analisi degli indicatori tecnici...',
+        calculating: 'Calcolo in corso...',
+        ready: 'Pronto ✓',
+        sign: 'SEGNALE',
+        currencyPair: 'Coppia di valute',
+        timeframe: 'Intervallo di tempo',
+        accuracy: 'Precisione',
+        direction: 'Direzione',
+        signalFound: 'Segnale trovato',
+        buy: 'ACQUISTA',
+        sell: 'VENDI'
+    },
+    de: {
+        selectLanguage: 'Sprache auswählen',
+        placeholderText: 'Klicken Sie, um ein Foto aufzunehmen oder ein Bild auszuwählen',
+        getSignal: 'SIGNAL ERHALTEN',
+        analyzing: 'ANALYSIERE...',
+        loadMorePhotos: 'Weitere Fotos laden',
+        calculatingIndicators: 'Indikatoren berechnen',
+        analyzingIndicators: 'Technische Indikatoren analysieren...',
+        calculating: 'Berechne...',
+        ready: 'Bereit ✓',
+        sign: 'SIGNAL',
+        currencyPair: 'Währungspaar',
+        timeframe: 'Zeitraum',
+        accuracy: 'Genauigkeit',
+        direction: 'Richtung',
+        signalFound: 'Signal gefunden',
+        buy: 'KAUFEN',
+        sell: 'VERKAUFEN'
+    }
+};
+
+// Timeframe options
+const timeframeOptions = {
+    forex: [
+        { value: '1m', label: '1M' },
+        { value: '3m', label: '3M' },
+        { value: '5m', label: '5M' },
+        { value: '15m', label: '15M' },
+        { value: '30m', label: '30M' }
+    ],
+    otc: [
+        { value: '5s', label: '5S' },
+        { value: '15s', label: '15S' },
+        { value: '30s', label: '30S' },
+        { value: '1m', label: '1M' },
+        { value: '5m', label: '5M' },
+        { value: '15m', label: '15M' }
+    ]
+};
+
+// Mode Selection
+modeButtons.forEach(btn => {
+    const handleClick = (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        modeButtons.forEach(b => {
+            b.classList.remove('active');
+            b.style.transform = 'scale(1)';
+        });
+        btn.classList.add('active');
+        btn.style.transform = 'scale(1.05)';
+        setTimeout(() => {
+            btn.style.transform = 'scale(1.02)';
+        }, 200);
+        currentMode = btn.dataset.mode;
+        updateCurrencyOptions();
+        updateCustomCurrencyOptions();
+        updateTimeframeOptions();
+        
+        // Force blur immediately
+        setTimeout(() => {
+            btn.blur();
+            if (document.activeElement) {
+                document.activeElement.blur();
+            }
+            // Force remove focus from body
+            if (document.body) {
+                document.body.focus();
+                document.body.blur();
+            }
+        }, 0);
+    };
+    
+    btn.addEventListener('mousedown', (e) => e.preventDefault());
+    btn.addEventListener('touchstart', (e) => e.preventDefault());
+    btn.addEventListener('click', handleClick);
+    btn.addEventListener('touchend', (e) => {
+        e.preventDefault();
+        handleClick(e);
+        btn.blur();
+    });
+    btn.addEventListener('mouseup', (e) => {
+        e.preventDefault();
+        btn.blur();
+    });
+    btn.addEventListener('mouseleave', () => btn.blur());
+    btn.addEventListener('touchcancel', () => btn.blur());
+});
+
+// Update currency options based on mode
+function updateCurrencyOptions() {
+    const options = currencySelect.querySelectorAll('option');
+    const selectedValue = currencySelect.value;
+    
+    options.forEach(option => {
+        const pair = option.value;
+        // For Forex: just the pair name, for OTC: pair name + " OTC"
+        if (currentMode === 'otc') {
+            option.textContent = `${pair} OTC`;
+        } else {
+            option.textContent = pair;
+        }
+    });
+    
+    currencySelect.value = selectedValue;
+}
+
+// Update timeframe options based on mode
+function updateTimeframeOptions() {
+    const options = timeframeOptions[currentMode];
+    const currentValue = timeframeSelect.value;
+    
+    // Update hidden select
+    timeframeSelect.innerHTML = '';
+    options.forEach(option => {
+        const optionElement = document.createElement('option');
+        optionElement.value = option.value;
+        optionElement.textContent = option.label;
+        timeframeSelect.appendChild(optionElement);
+    });
+    
+    // Try to set previous value if it exists in new options
+    let selectedValue = options[0].value;
+    if (options.find(opt => opt.value === currentValue)) {
+        selectedValue = currentValue;
+    }
+    timeframeSelect.value = selectedValue;
+    
+    // Update custom dropdown
+    timeframeDropdown.innerHTML = '';
+    options.forEach(option => {
+        const optionDiv = document.createElement('div');
+        optionDiv.className = 'custom-option';
+        optionDiv.dataset.value = option.value;
+        optionDiv.innerHTML = `<span class="timeframe-text">${option.label}</span>`;
+        
+        if (option.value === selectedValue) {
+            optionDiv.classList.add('selected');
+        }
+        
+        optionDiv.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const value = optionDiv.dataset.value;
+            
+            // Update hidden select
+            timeframeSelect.value = value;
+            
+            // Update trigger display
+            timeframeText.textContent = option.label;
+            
+            // Update selected state
+            timeframeDropdown.querySelectorAll('.custom-option').forEach(opt => {
+                opt.classList.remove('selected');
+            });
+            optionDiv.classList.add('selected');
+            
+            // Close dropdown
+            timeframeTrigger.classList.remove('active');
+            timeframeDropdown.classList.remove('open');
+            
+            // Trigger change event
+            timeframeSelect.dispatchEvent(new Event('change'));
+            
+            // Remove focus
+            setTimeout(() => {
+                removeAllFocus();
+            }, 100);
+        });
+        
+        timeframeDropdown.appendChild(optionDiv);
+    });
+    
+    // Update trigger text
+    const selectedOption = options.find(opt => opt.value === selectedValue);
+    if (selectedOption) {
+        timeframeText.textContent = selectedOption.label;
+    }
+}
+
+// Custom Currency Selector functionality
+currencyTrigger.addEventListener('click', (e) => {
+    e.stopPropagation();
+    // Close other dropdowns if open
+    timeframeTrigger.classList.remove('active');
+    timeframeDropdown.classList.remove('open');
+    if (languageModal) {
+        languageModal.classList.remove('active');
+    }
+    // Toggle currency dropdown
+    currencyTrigger.classList.toggle('active');
+    currencyDropdown.classList.toggle('open');
+});
+
+// Custom Timeframe Selector functionality
+timeframeTrigger.addEventListener('click', (e) => {
+    e.stopPropagation();
+    // Close other dropdowns if open
+    currencyTrigger.classList.remove('active');
+    currencyDropdown.classList.remove('open');
+    if (languageModal) {
+        languageModal.classList.remove('active');
+    }
+    // Toggle timeframe dropdown
+    timeframeTrigger.classList.toggle('active');
+    timeframeDropdown.classList.toggle('open');
+});
+
+// Custom Language Selector functionality - Open Modal
+languageTrigger.addEventListener('click', (e) => {
+    e.stopPropagation();
+    // Close other dropdowns if open
+    currencyTrigger.classList.remove('active');
+    currencyDropdown.classList.remove('open');
+    timeframeTrigger.classList.remove('active');
+    timeframeDropdown.classList.remove('open');
+    // Open language modal
+    languageModal.classList.add('active');
+    updateLanguageModalTitle();
+});
+
+// Close modal button
+languageModalClose.addEventListener('click', (e) => {
+    e.stopPropagation();
+    languageModal.classList.remove('active');
+    setTimeout(() => {
+        removeAllFocus();
+    }, 100);
+});
+
+// Close modal when clicking outside
+languageModal.addEventListener('click', (e) => {
+    if (e.target === languageModal) {
+        languageModal.classList.remove('active');
+        setTimeout(() => {
+            removeAllFocus();
+        }, 100);
+    }
+});
+
+// Handle language option selection
+languageModalList.querySelectorAll('.language-modal-option').forEach(option => {
+    option.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const lang = option.dataset.lang;
+        const flag = option.dataset.flag;
+        
+        if (lang && lang !== currentLanguage) {
+            // Update language
+            currentLanguage = lang;
+            
+            // Save to localStorage
+            localStorage.setItem('language', currentLanguage);
+            
+            // Update trigger display
+            languageFlag.src = `svg/${flag}.svg`;
+            
+            // Update selected state
+            languageModalList.querySelectorAll('.language-modal-option').forEach(opt => {
+                opt.classList.remove('selected');
+            });
+            option.classList.add('selected');
+            
+            // Close modal
+            languageModal.classList.remove('active');
+            
+            // Update all text
+            updateLanguage();
+        } else {
+            // Just close modal if same language selected
+            languageModal.classList.remove('active');
+        }
+        
+        // Remove focus
+        setTimeout(() => {
+            removeAllFocus();
+        }, 100);
+    });
+});
+
+// Close dropdowns when clicking outside
+document.addEventListener('click', (e) => {
+    if (!customCurrencySelect.contains(e.target)) {
+        currencyTrigger.classList.remove('active');
+        currencyDropdown.classList.remove('open');
+    }
+    if (!customTimeframeSelect.contains(e.target)) {
+        timeframeTrigger.classList.remove('active');
+        timeframeDropdown.classList.remove('open');
+    }
+});
+
+// Handle option selection
+currencyDropdown.querySelectorAll('.custom-option').forEach(option => {
+    option.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const value = option.dataset.value;
+        const flag1Value = option.dataset.flag1;
+        const flag2Value = option.dataset.flag2;
+        
+        // Update hidden select
+        currencySelect.value = value;
+        
+        // Update trigger display
+        if (currentMode === 'otc') {
+            currencyText.textContent = `${value} OTC`;
+        } else {
+            currencyText.textContent = value;
+        }
+        
+        // Update flags
+        if (flag1 && flag2 && flag1Value && flag2Value) {
+            flag1.src = `svg/${flag1Value}.svg`;
+            flag2.src = `svg/${flag2Value}.svg`;
+        }
+        
+        // Update selected state
+        currencyDropdown.querySelectorAll('.custom-option').forEach(opt => {
+            opt.classList.remove('selected');
+        });
+        option.classList.add('selected');
+        
+        // Close dropdown
+        currencyTrigger.classList.remove('active');
+        currencyDropdown.classList.remove('open');
+        
+        // Trigger change event
+        currencySelect.dispatchEvent(new Event('change'));
+        
+        // Remove focus
+        setTimeout(() => {
+            removeAllFocus();
+        }, 100);
+    });
+});
+
+// Update currency select when mode changes
+currencySelect.addEventListener('change', () => {
+    updateCurrencyOptions();
+    updateCustomCurrencyOptions();
+});
+
+timeframeSelect.addEventListener('change', () => {
+    // Remove focus styles immediately
+    timeframeSelect.style.outline = 'none';
+    timeframeSelect.style.borderColor = 'rgba(255, 255, 255, 0.2)';
+    timeframeSelect.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.2)';
+    // Blur after selection is made
+    setTimeout(() => {
+        timeframeSelect.blur();
+        removeAllFocus();
+    }, 100);
+});
+
+// Function to remove focus from all elements
+function removeAllFocus() {
+    if (document.activeElement && document.activeElement !== document.body) {
+        document.activeElement.blur();
+    }
+    if (document.body) {
+        document.body.focus();
+        document.body.blur();
+    }
+}
+
+// Remove focus when clicking/touching anywhere on the page
+document.addEventListener('touchstart', (e) => {
+    // Don't blur if clicking on a select that's opening
+    if (e.target === currencySelect || e.target === timeframeSelect) {
+        return;
+    }
+    // Remove focus from other elements when touching something new
+    if (document.activeElement && 
+        document.activeElement !== e.target && 
+        document.activeElement !== currencySelect && 
+        document.activeElement !== timeframeSelect) {
+        document.activeElement.blur();
+    }
+}, true);
+
+document.addEventListener('touchend', (e) => {
+    // If not clicking on an interactive element, remove all focus
+    const interactiveElements = [
+        currencySelect, 
+        timeframeSelect, 
+        getSignalBtn, 
+        newPhotoBtn, 
+        customLanguageSelect,
+        signalPlaceholder,
+        ...modeButtons
+    ];
+    
+    if (!interactiveElements.includes(e.target) && 
+        !interactiveElements.some(el => el.contains(e.target))) {
+        setTimeout(() => {
+            removeAllFocus();
+        }, 100);
+    }
+}, true);
+
+// Also handle mouse clicks for desktop
+document.addEventListener('mousedown', (e) => {
+    if (e.target === currencySelect || e.target === timeframeSelect) {
+        return;
+    }
+    // Remove focus styles from selects
+    if (document.activeElement === currencySelect || document.activeElement === timeframeSelect) {
+        const activeSelect = document.activeElement;
+        activeSelect.style.outline = 'none';
+        activeSelect.style.borderColor = 'rgba(255, 255, 255, 0.2)';
+        activeSelect.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.2)';
+    }
+    if (document.activeElement && 
+        document.activeElement !== e.target && 
+        document.activeElement !== currencySelect && 
+        document.activeElement !== timeframeSelect) {
+        document.activeElement.blur();
+    }
+}, true);
+
+// Image Upload/Capture
+const handlePlaceholderClick = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    imageInput.click();
+    setTimeout(() => {
+        signalPlaceholder.blur();
+        if (document.activeElement) {
+            document.activeElement.blur();
+        }
+        if (document.body) {
+            document.body.focus();
+            document.body.blur();
+        }
+    }, 0);
+};
+
+signalPlaceholder.addEventListener('mousedown', (e) => e.preventDefault());
+signalPlaceholder.addEventListener('touchstart', (e) => e.preventDefault());
+signalPlaceholder.addEventListener('click', handlePlaceholderClick);
+signalPlaceholder.addEventListener('touchend', (e) => {
+    e.preventDefault();
+    handlePlaceholderClick(e);
+    signalPlaceholder.blur();
+});
+signalPlaceholder.addEventListener('mouseup', (e) => {
+    e.preventDefault();
+    signalPlaceholder.blur();
+});
+signalPlaceholder.addEventListener('mouseleave', () => signalPlaceholder.blur());
+signalPlaceholder.addEventListener('touchcancel', () => signalPlaceholder.blur());
+
+imageInput.addEventListener('change', (e) => {
+    const file = e.target.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = (event) => {
+            selectedImage = event.target.result;
+            previewImage.src = selectedImage;
+            
+            // Smooth fade out placeholder
+            signalPlaceholder.style.opacity = '0';
+            signalPlaceholder.style.transform = 'scale(0.95)';
+            
+            setTimeout(() => {
+                signalPlaceholder.style.display = 'none';
+                previewImage.style.display = 'block';
+                previewImage.style.opacity = '0';
+                signalInfo.style.display = 'none';
+                
+                // Smooth fade in image
+                setTimeout(() => {
+                    previewImage.style.transition = 'opacity 0.5s ease';
+                    previewImage.style.opacity = '1';
+                }, 50);
+            }, 300);
+            
+            getSignalBtn.disabled = false;
+            getSignalBtn.style.opacity = '1';
+            getSignalBtn.style.cursor = 'pointer';
+            getSignalBtn.style.transform = 'scale(1)';
+        };
+        reader.readAsDataURL(file);
+    }
+});
+
+// Get Signal Button
+const handleGetSignalClick = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (!selectedImage) {
+        // Smooth animation when no photo
+        getSignalBtn.style.transition = 'all 0.3s ease';
+        getSignalBtn.style.transform = 'scale(0.95)';
+        getSignalBtn.style.opacity = '0.7';
+        
+        setTimeout(() => {
+            getSignalBtn.style.transform = 'scale(1)';
+            getSignalBtn.style.opacity = '1';
+        }, 150);
+        
+        setTimeout(() => {
+            getSignalBtn.style.transition = '';
+            getSignalBtn.blur();
+            if (document.activeElement) {
+                document.activeElement.blur();
+            }
+            if (document.body) {
+                document.body.focus();
+                document.body.blur();
+            }
+        }, 300);
+        return;
+    }
+
+    // Hide preview image with animation
+    previewImage.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+    previewImage.style.opacity = '0';
+    previewImage.style.transform = 'scale(0.95)';
+    
+    // Disable button during analysis
+    getSignalBtn.disabled = true;
+    getSignalBtn.classList.add('loading');
+    getSignalBtn.textContent = translations[currentLanguage].analyzing;
+    getSignalBtn.style.background = 'linear-gradient(135deg, #3b82f6 0%, #3b82f6 100%)';
+    
+    // Hide signal placeholder and signal info if visible
+    signalPlaceholder.style.display = 'none';
+    signalInfo.style.display = 'none';
+    
+    // Show calculating indicators immediately
+    setTimeout(() => {
+        previewImage.style.display = 'none';
+        calculatingIndicators.style.display = 'flex';
+        calculatingIndicators.style.opacity = '0';
+        setTimeout(() => {
+            calculatingIndicators.style.transition = 'opacity 0.5s ease';
+            calculatingIndicators.style.opacity = '1';
+        }, 50);
+        
+        // Animate indicators calculation
+        animateIndicatorsCalculation();
+    }, 300);
+    
+    // After indicators calculation, show signal
+    setTimeout(() => {
+        calculatingIndicators.style.opacity = '0';
+        setTimeout(() => {
+            calculatingIndicators.style.display = 'none';
+            analyzeSignal();
+            
+            // Hide GET SIGNAL button and show NEW PHOTO button
+            getSignalBtn.classList.remove('loading');
+            getSignalBtn.style.display = 'none';
+            newPhotoBtn.style.display = 'flex';
+            newPhotoBtn.style.opacity = '0';
+            newPhotoBtn.disabled = false;
+            newPhotoBtn.classList.remove('loading');
+            setTimeout(() => {
+                newPhotoBtn.style.transition = 'opacity 0.5s ease';
+                newPhotoBtn.style.opacity = '1';
+            }, 100);
+            setTimeout(() => {
+                getSignalBtn.blur();
+                if (document.activeElement) {
+                    document.activeElement.blur();
+                }
+                if (document.body) {
+                    document.body.focus();
+                    document.body.blur();
+                }
+            }, 0);
+        }, 500);
+    }, 2800); // 300ms (hide image) + 2500ms (indicators calculation)
+};
+
+getSignalBtn.addEventListener('mousedown', (e) => e.preventDefault());
+getSignalBtn.addEventListener('touchstart', (e) => e.preventDefault());
+getSignalBtn.addEventListener('click', handleGetSignalClick);
+getSignalBtn.addEventListener('touchend', (e) => {
+    e.preventDefault();
+    handleGetSignalClick(e);
+    getSignalBtn.blur();
+});
+getSignalBtn.addEventListener('mouseup', (e) => {
+    e.preventDefault();
+    getSignalBtn.blur();
+});
+getSignalBtn.addEventListener('mouseleave', () => getSignalBtn.blur());
+getSignalBtn.addEventListener('touchcancel', () => getSignalBtn.blur());
+
+getSignalBtn.addEventListener('mouseleave', () => {
+    getSignalBtn.blur();
+});
+
+// Animate indicators calculation
+function animateIndicatorsCalculation() {
+    const indicators = calculatingIndicators.querySelectorAll('.indicator-item');
+    const delay = 400; // Delay between each indicator
+    
+    // Reset all indicators to calculating state first
+    indicators.forEach((indicator) => {
+        const status = indicator.querySelector('.indicator-status');
+        status.classList.remove('completed');
+        status.classList.add('calculating');
+        status.textContent = translations[currentLanguage].calculating;
+    });
+    
+    // Then animate them to completed state
+    indicators.forEach((indicator, index) => {
+        setTimeout(() => {
+            const status = indicator.querySelector('.indicator-status');
+            status.classList.remove('calculating');
+            status.classList.add('completed');
+            status.textContent = translations[currentLanguage].ready;
+        }, delay * (index + 1));
+    });
+}
+
+// Fake Signal Analysis
+function analyzeSignal() {
+    // Generate fake prediction
+    const directions = ['BUY', 'SELL'];
+    const randomDirection = directions[Math.floor(Math.random() * directions.length)];
+    const isUp = randomDirection === 'BUY';
+    const accuracy = Math.floor(Math.random() * 19) + 75; // 75-93%
+    
+    // Get selected currency pair info
+    const selectedOption = currencySelect.options[currencySelect.selectedIndex];
+    const pairValue = selectedOption.value;
+    const flag1Value = selectedOption.dataset.flag1;
+    const flag2Value = selectedOption.dataset.flag2;
+    
+    // Update currency pair flags
+    const signalCurrencyFlags = document.getElementById('signalCurrencyFlags');
+    if (signalCurrencyFlags && flag1Value && flag2Value) {
+        signalCurrencyFlags.innerHTML = `
+            <img src="svg/${flag1Value}.svg" alt="${flag1Value.toUpperCase()}" class="flag-icon">
+            <img src="svg/${flag2Value}.svg" alt="${flag2Value.toUpperCase()}" class="flag-icon">
+        `;
+    }
+    
+    // Update currency pair text
+    const pairText = currentMode === 'otc' ? `${pairValue} OTC` : pairValue;
+    document.getElementById('detailPair').textContent = pairText;
+    
+    // Update timeframe
+    document.getElementById('detailTimeframe').textContent = timeframeSelect.value;
+    
+    // Animate accuracy counter
+    const accuracyElement = document.getElementById('detailAccuracy');
+    let currentAccuracy = 0;
+    const accuracyInterval = setInterval(() => {
+        currentAccuracy += 2;
+        if (currentAccuracy >= accuracy) {
+            currentAccuracy = accuracy;
+            clearInterval(accuracyInterval);
+        }
+        accuracyElement.textContent = currentAccuracy + '%';
+    }, 30);
+    
+    // Update direction
+    const directionElement = document.getElementById('detailDirection');
+    const directionIcon = document.getElementById('directionIcon');
+    const t = translations[currentLanguage];
+    directionElement.textContent = isUp ? t.buy : t.sell;
+    directionElement.className = 'direction-text ' + (isUp ? 'up' : 'down');
+    // Store direction type for language updates
+    directionElement.dataset.direction = isUp ? 'buy' : 'sell';
+    
+    // Update direction icon
+    if (directionIcon) {
+        directionIcon.className = 'direction-icon ' + (isUp ? 'up' : 'down');
+        if (isUp) {
+            directionIcon.innerHTML = `
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M7 17L12 12L17 17M7 11L12 6L17 11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            `;
+        } else {
+            directionIcon.innerHTML = `
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M7 13L12 18L17 13M7 6L12 11L17 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            `;
+        }
+    }
+    
+    // Show signal info with animation
+    signalInfo.style.display = 'block';
+    signalInfo.style.opacity = '0';
+    signalInfo.style.transform = 'translateY(20px) scale(0.95)';
+    
+    setTimeout(() => {
+        signalInfo.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+        signalInfo.style.opacity = '1';
+        signalInfo.style.transform = 'translateY(0) scale(1)';
+    }, 50);
+    
+    // Animate progress bar
+    const progressFill = document.getElementById('progressFill');
+    const progressPercent = document.getElementById('progressPercent');
+    progressFill.style.width = '0%';
+    
+    let progress = 0;
+    const progressInterval = setInterval(() => {
+        progress += 2;
+        if (progress > 100) {
+            progress = 100;
+            clearInterval(progressInterval);
+        }
+        progressFill.style.width = progress + '%';
+        progressPercent.textContent = progress + '%';
+    }, 20);
+}
+
+// Get flag file for language code
+function getFlagForLanguage(lang) {
+    const flagMap = {
+        'en': 'gb',
+        'ru': 'ru',
+        'hi': 'in',
+        'ar': 'sa',
+        'tg': 'tj',
+        'uz': 'uz',
+        'tr': 'tr',
+        'pt': 'br',
+        'hy': 'am',
+        'kk': 'kz',
+        'es': 'es',
+        'fr': 'fr',
+        'pl': 'pl',
+        'uk': 'ua',
+        'it': 'it',
+        'de': 'de'
+    };
+    return flagMap[lang] || 'gb';
+}
+
+// Update all text content based on current language
+function updateLanguage() {
+    const t = translations[currentLanguage];
+    
+    // Language selector - update trigger display
+    if (languageFlag) {
+        const flagCode = getFlagForLanguage(currentLanguage);
+        languageFlag.src = `svg/${flagCode}.svg`;
+    }
+    
+    // Placeholder text
+    const placeholderText = document.querySelector('.placeholder-text');
+    if (placeholderText) {
+        placeholderText.textContent = t.placeholderText;
+    }
+    
+    // Get Signal button
+    if (getSignalBtn && !getSignalBtn.classList.contains('loading')) {
+        getSignalBtn.textContent = t.getSignal;
+    }
+    
+    // New Photo button
+    const newPhotoBtnSvg = newPhotoBtn.querySelector('svg');
+    if (newPhotoBtnSvg) {
+        // Find and update text node after SVG
+        let textNode = newPhotoBtnSvg.nextSibling;
+        // Remove all text nodes after SVG
+        while (textNode && textNode.nodeType === 3) {
+            const toRemove = textNode;
+            textNode = textNode.nextSibling;
+            toRemove.remove();
+        }
+        // Add new text node
+        const newTextNode = document.createTextNode(' ' + t.loadMorePhotos);
+        newPhotoBtn.insertBefore(newTextNode, newPhotoBtnSvg.nextSibling);
+    }
+    
+    // Calculating indicators
+    const calculatingTitle = document.querySelector('.calculating-title');
+    if (calculatingTitle) {
+        calculatingTitle.textContent = t.calculatingIndicators;
+    }
+    
+    const calculatingText = document.querySelector('.calculating-text');
+    if (calculatingText) {
+        calculatingText.textContent = t.analyzingIndicators;
+    }
+    
+    // Signal info labels - update all elements with data-i18n attribute
+    document.querySelectorAll('[data-i18n]').forEach(element => {
+        const key = element.getAttribute('data-i18n');
+        if (t[key]) {
+            element.textContent = t[key];
+        }
+    });
+    
+    // Update direction text if signal was already generated
+    const directionElement = document.getElementById('detailDirection');
+    if (directionElement && directionElement.dataset.direction) {
+        const directionType = directionElement.dataset.direction;
+        directionElement.textContent = directionType === 'buy' ? t.buy : t.sell;
+    }
+    
+    // Update modal title if modal is open
+    updateLanguageModalTitle();
+}
+
+// Custom Language Selector functionality (already defined above)
+
+// Load language from localStorage on page load
+function initLanguage() {
+    const savedLanguage = localStorage.getItem('language');
+    const supportedLanguages = ['en', 'ru', 'hi', 'ar', 'tg', 'uz', 'tr', 'pt', 'hy', 'kk', 'es', 'fr', 'pl', 'uk', 'it', 'de'];
+    if (savedLanguage && supportedLanguages.includes(savedLanguage)) {
+        currentLanguage = savedLanguage;
+    } else {
+        currentLanguage = 'en'; // Default to English
+    }
+    
+    // Update language selector display
+    if (languageFlag) {
+        const flagCode = getFlagForLanguage(currentLanguage);
+        languageFlag.src = `svg/${flagCode}.svg`;
+        
+        // Update selected state in modal
+        if (languageModalList) {
+            languageModalList.querySelectorAll('.language-modal-option').forEach(opt => {
+                opt.classList.remove('selected');
+                if (opt.dataset.lang === currentLanguage) {
+                    opt.classList.add('selected');
+                }
+            });
+        }
+    }
+    
+    // Update all text content after language is loaded
+    updateLanguage();
+}
+
+// Update language modal title
+function updateLanguageModalTitle() {
+    const title = document.querySelector('.language-modal-title');
+    if (title) {
+        const t = translations[currentLanguage];
+        title.textContent = t ? t.selectLanguage : 'Select Language';
+    }
+}
+
+// Close language dropdown when clicking outside
+document.addEventListener('click', (e) => {
+});
+
+// New Photo Button
+const handleNewPhotoClick = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    // Remove loading state immediately
+    newPhotoBtn.classList.remove('loading');
+    newPhotoBtn.disabled = false;
+    resetToPhotoUpload();
+    setTimeout(() => {
+        newPhotoBtn.blur();
+        if (document.activeElement) {
+            document.activeElement.blur();
+        }
+        if (document.body) {
+            document.body.focus();
+            document.body.blur();
+        }
+    }, 0);
+};
+
+newPhotoBtn.addEventListener('mousedown', (e) => e.preventDefault());
+newPhotoBtn.addEventListener('touchstart', (e) => e.preventDefault());
+newPhotoBtn.addEventListener('click', handleNewPhotoClick);
+newPhotoBtn.addEventListener('touchend', (e) => {
+    e.preventDefault();
+    handleNewPhotoClick(e);
+    newPhotoBtn.blur();
+});
+newPhotoBtn.addEventListener('mouseup', (e) => {
+    e.preventDefault();
+    newPhotoBtn.blur();
+});
+newPhotoBtn.addEventListener('mouseleave', () => newPhotoBtn.blur());
+newPhotoBtn.addEventListener('touchcancel', () => newPhotoBtn.blur());
+
+// Reset to photo upload state
+function resetToPhotoUpload() {
+    selectedImage = null;
+    previewImage.src = '';
+    previewImage.style.display = 'none';
+    signalInfo.style.display = 'none';
+    calculatingIndicators.style.display = 'none';
+    calculatingIndicators.style.opacity = '0';
+    signalPlaceholder.style.display = 'flex';
+    signalPlaceholder.style.opacity = '1';
+    signalPlaceholder.style.transform = 'scale(1)';
+    imageInput.value = '';
+    
+    // Reset indicators status
+    const indicators = calculatingIndicators.querySelectorAll('.indicator-status');
+    indicators.forEach(status => {
+        status.classList.remove('completed');
+        status.classList.add('calculating');
+        status.textContent = 'Вычисляется...';
+    });
+    
+    // Hide new photo button and show GET SIGNAL button
+    newPhotoBtn.style.opacity = '0';
+    newPhotoBtn.classList.remove('loading');
+    setTimeout(() => {
+        newPhotoBtn.style.display = 'none';
+        getSignalBtn.style.display = 'block';
+        getSignalBtn.disabled = true;
+        getSignalBtn.style.opacity = '0.5';
+        getSignalBtn.style.cursor = 'not-allowed';
+        getSignalBtn.textContent = translations[currentLanguage].getSignal;
+        getSignalBtn.style.background = 'linear-gradient(135deg, #3b82f6 0%, #60a5fa 100%)';
+        getSignalBtn.classList.remove('loading');
+    }, 300);
+}
+
+// Initialize language on page load
+initLanguage();
+
+// Initialize
+getSignalBtn.disabled = true;
+getSignalBtn.style.opacity = '0.5';
+getSignalBtn.style.cursor = 'not-allowed';
+
+// Initialize timeframes and currency select
+updateTimeframeOptions();
+updateCurrencyOptions();
+
+// Set initial selected option in custom dropdown
+const initialOption = currencyDropdown.querySelector('.custom-option[data-value="EURUSD"]');
+if (initialOption) {
+    initialOption.classList.add('selected');
+}
+
+// Update all custom options when mode changes
+function updateCustomCurrencyOptions() {
+    const customOptions = currencyDropdown.querySelectorAll('.custom-option');
+    const selectedValue = currencySelect.value;
+    
+    customOptions.forEach(option => {
+        const optionValue = option.dataset.value;
+        const optionText = option.querySelector('.currency-text');
+        
+        if (currentMode === 'otc') {
+            optionText.textContent = `${optionValue} OTC`;
+        } else {
+            optionText.textContent = optionValue;
+        }
+        
+        // Update selected state
+        if (optionValue === selectedValue) {
+            option.classList.add('selected');
+        } else {
+            option.classList.remove('selected');
+        }
+    });
+    
+    // Update trigger text
+    if (currentMode === 'otc') {
+        currencyText.textContent = `${selectedValue} OTC`;
+    } else {
+        currencyText.textContent = selectedValue;
+    }
+}
+
